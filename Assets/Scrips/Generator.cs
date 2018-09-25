@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Generator : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class Generator : MonoBehaviour
     /// </summary>
     int count = 0;
 
+    [SerializeField]
+    Text text;
+
     private void Start()
     {
         StartCoroutine(GenerateBall());
@@ -35,12 +39,15 @@ public class Generator : MonoBehaviour
         {
             Instantiate(arrayBall[Random.Range(0, 3)], point.transform.position, Quaternion.identity);
             count++;
+            SetScore();
+
         }
     }
 
     public void SetCountBall()
     {
         count--;
+        ////
     }
 
     /// <summary>
@@ -57,7 +64,7 @@ public class Generator : MonoBehaviour
         {
             Instantiate(arrayBall[Random.Range(0, 3)], point.transform.position, Quaternion.identity);
             count++;
-
+            SetScore();
             //Debug.Log(count);
 
             yield return new WaitForSeconds(.5f);
@@ -65,5 +72,10 @@ public class Generator : MonoBehaviour
 
             StartCoroutine(GenerateBall());
         }
+    }
+    int text1;
+    public void SetScore()
+    {
+        text.text = "Score: "+text1++.ToString();
     }
 }
