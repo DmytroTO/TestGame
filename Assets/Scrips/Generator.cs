@@ -12,17 +12,35 @@ public class Generator : MonoBehaviour
     [Header("Шары для генерации")]
     GameObject[] arrayBall;
 
+    [SerializeField]
+    [Header("Точка для генерации")]
+    GameObject point;
+
     /// <summary>
     /// счетчик шарав
     /// </summary>
     int count=0;
+
+    private void Start()
+    {
+        StartCoroutine(GenerateBall());
+    }
 
     /// <summary>
     /// создает новый шар
     /// </summary>
     public void CreateBall()
     {
-        Instantiate(arrayBall[0], transform.position, Quaternion.identity);
+        if(count < maxBall)
+        {
+            Instantiate(arrayBall[0], point.transform.position, Quaternion.identity);
+            count++;
+        }
+    }
+
+    public void SetCountBall()
+    {
+        count--;
     }
 
     /// <summary>
@@ -31,5 +49,21 @@ public class Generator : MonoBehaviour
     public void ManagerBalls()
     {
 
+    }
+    
+    IEnumerator GenerateBall()
+    {
+        if(count < maxBall)
+        {
+            Instantiate(arrayBall[0], point.transform.position, Quaternion.identity);
+            count++;
+
+            //Debug.Log(count);
+
+            yield return new WaitForSeconds(.5f);
+
+
+            StartCoroutine(GenerateBall());
+        }
     }
 }

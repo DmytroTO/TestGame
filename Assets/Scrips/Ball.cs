@@ -35,6 +35,7 @@ public class Ball : MonoBehaviour
     private void OnBecameInvisible()
     {
         //генерим новый шар
+        generator.SetCountBall();
         generator.CreateBall();
 
         //удаляем этот шар
