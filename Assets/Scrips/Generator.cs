@@ -19,7 +19,7 @@ public class Generator : MonoBehaviour
     /// <summary>
     /// счетчик шарав
     /// </summary>
-    int count=0;
+    int count = 0;
 
     private void Start()
     {
@@ -33,7 +33,7 @@ public class Generator : MonoBehaviour
     {
         if(count < maxBall)
         {
-            Instantiate(arrayBall[0], point.transform.position, Quaternion.identity);
+            Instantiate(arrayBall[Random.Range(0, 3)], point.transform.position, Quaternion.identity);
             count++;
         }
     }
@@ -50,12 +50,12 @@ public class Generator : MonoBehaviour
     {
 
     }
-    
+
     IEnumerator GenerateBall()
     {
         if(count < maxBall)
         {
-            Instantiate(arrayBall[0], point.transform.position, Quaternion.identity);
+            Instantiate(arrayBall[Random.Range(0, 3)], point.transform.position, Quaternion.identity);
             count++;
 
             //Debug.Log(count);
