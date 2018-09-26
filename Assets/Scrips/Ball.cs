@@ -11,12 +11,17 @@ public class Ball : MonoBehaviour
     Generator generator;
 
     /// <summary>
-    ///    рандомная скорость
+    /// рандомная скорость
     /// </summary>
     int randSpeed;
+
+    //
     bool isDeath;
+
+    [Header("Количество очков")]
     [SerializeField]
     int score;
+
     void Start()
     {
         //задаем скорость шара
@@ -36,7 +41,10 @@ public class Ball : MonoBehaviour
 
     private void OnMouseDown()
     {
+        //устанавливаем новое значение очков (разные по цветам шары дают разные очки)
         generator.SetScore(score);
+
+        //"смерть" шара
         Death();
     }
 
@@ -45,14 +53,20 @@ public class Ball : MonoBehaviour
         Death();
     }
 
+    /// <summary>
+    /// удаляем шар с проверкой он "уже мертвый или нет"
+    /// для того чтобы метод не вызвался 2 раз из мнтода OnBecameInvisible
+    /// </summary>
     public void Death()
     {
         if(isDeath)
         {
             return;
         }
+
         isDeath = true;
-        
+
+        //устанавливаем что текущих шаров столо на 1 меньше
         generator.SetCountBall();
 
         //генерим новый шар

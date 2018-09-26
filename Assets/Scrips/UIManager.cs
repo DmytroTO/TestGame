@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    /// <summary>
+    /// Выход из игры
+    /// </summary>
     public void ExitApplication()
     {
         Application.Quit();
     }
 
+    /// <summary>
+    /// Уствановка паузы
+    /// </summary>
+    /// <param name="isPause">true - пауза / false - не пауза</param>
     public void PauseGame(bool isPause)
     {
         if(isPause)
