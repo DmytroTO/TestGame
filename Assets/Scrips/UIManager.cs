@@ -8,4 +8,16 @@ public class UIManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void PauseGame(bool isPause)
+    {
+        if(isPause)
+        {
+            Time.timeScale = 0.0f;
+        }
+        else if(!isPause)
+        {
+            Time.timeScale = 1.0f;
+        }
+    }
 }
