@@ -24,7 +24,7 @@ public class Generator : MonoBehaviour
 
     [SerializeField]
     Text text;
-
+    int score;
     private void Start()
     {
         StartCoroutine(GenerateBall());
@@ -39,7 +39,7 @@ public class Generator : MonoBehaviour
         {
             Instantiate(arrayBall[Random.Range(0, 3)], point.transform.position, Quaternion.identity);
             count++;
-            SetScore();
+            //SetScore();
 
         }
     }
@@ -59,7 +59,7 @@ public class Generator : MonoBehaviour
         {
             Instantiate(arrayBall[Random.Range(0, 3)], point.transform.position, Quaternion.identity);
             count++;
-            SetScore();
+            //SetScore();
             //Debug.Log(count);
 
             yield return new WaitForSeconds(.5f);
@@ -69,12 +69,14 @@ public class Generator : MonoBehaviour
         }
     }
 
-    public void SetScore()
+    public void SetScore(int addScore)
     {
-        //text.text = "Score: " + count++.ToString();
+        score = score + addScore;
+
+        text.text = "Score: " + score.ToString();
     }
-    private void Update()
-    {
-        text.text = "count: " + count.ToString();
-    }
+    //private void Update()
+    //{
+    //    text.text = "count: " + count.ToString();
+    //}
 }

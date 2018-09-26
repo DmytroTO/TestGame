@@ -15,6 +15,8 @@ public class Ball : MonoBehaviour
     /// </summary>
     int randSpeed;
     bool isDeath;
+    [SerializeField]
+    int score;
     void Start()
     {
         //задаем скорость шара
@@ -34,6 +36,7 @@ public class Ball : MonoBehaviour
 
     private void OnMouseDown()
     {
+        generator.SetScore(score);
         Death();
     }
 
@@ -49,6 +52,7 @@ public class Ball : MonoBehaviour
             return;
         }
         isDeath = true;
+        
         generator.SetCountBall();
 
         //генерим новый шар
