@@ -24,10 +24,19 @@ public class Generator : MonoBehaviour
 
     [SerializeField]
     Text text;
+
     int score;
+
+    [SerializeField]
+    GameObject leftPoint;
+
+    [SerializeField]
+    GameObject rigthPoint;
+
     private void Start()
     {
         StartCoroutine(GenerateBall());
+        GetTransformCamera();
     }
 
     /// <summary>
@@ -49,9 +58,6 @@ public class Generator : MonoBehaviour
         count--;
         ////
     }
-
-    
-
 
     IEnumerator GenerateBall()
     {
@@ -79,4 +85,26 @@ public class Generator : MonoBehaviour
     //{
     //    text.text = "count: " + count.ToString();
     //}
+
+    private void Update()
+    {
+        if(Input.GetKey(KeyCode.U))
+        {
+            GetTransformCamera();
+        }
+    }
+
+    /// <summary>
+    /// Метод - определятор крайних положений экрана(камеры)
+    /// нужно для того чтобы генерить шары с учетом ширины экрана
+    /// </summary>
+    public void GetTransformCamera()
+    {
+        Vector2 min = Camera.main.ViewportToWorldPoint( new Vector2( 0,0));//bpttom  - left
+        Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 0));//top   -  rigth  
+
+
+        leftPoint.transform.position = min;
+        rigthPoint.transform.position = max;
+    }
 }
