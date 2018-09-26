@@ -14,7 +14,7 @@ public class Ball : MonoBehaviour
     ///    рандомная скорость
     /// </summary>
     int randSpeed;
-
+    bool isDeath;
     void Start()
     {
         //задаем скорость шара
@@ -32,10 +32,26 @@ public class Ball : MonoBehaviour
         transform.Translate(new Vector2(0, 1) * (Time.deltaTime * randSpeed));
     }
 
+    private void OnMouseDown()
+    {
+        Death();
+    }
+
     private void OnBecameInvisible()
     {
-        //генерим новый шар
+        Death();
+    }
+
+    public void Death()
+    {
+        if(isDeath)
+        {
+            return;
+        }
+        isDeath = true;
         generator.SetCountBall();
+
+        //генерим новый шар
         generator.CreateBall();
 
         //удаляем этот шар

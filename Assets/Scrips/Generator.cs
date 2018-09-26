@@ -50,13 +50,8 @@ public class Generator : MonoBehaviour
         ////
     }
 
-    /// <summary>
-    /// задает положение шара и контролирует количество шаров
-    /// </summary>
-    public void ManagerBalls()
-    {
+    
 
-    }
 
     IEnumerator GenerateBall()
     {
@@ -73,9 +68,13 @@ public class Generator : MonoBehaviour
             StartCoroutine(GenerateBall());
         }
     }
-    int text1;
+
     public void SetScore()
     {
-        text.text = "Score: "+text1++.ToString();
+        //text.text = "Score: " + count++.ToString();
+    }
+    private void Update()
+    {
+        text.text = "count: " + count.ToString();
     }
 }
